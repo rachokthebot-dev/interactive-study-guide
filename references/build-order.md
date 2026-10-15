@@ -60,7 +60,7 @@ each is hunting for. Learners rate that chunk highest.
 ## Phase 4 — Write the item bank
 
 Per chapter: **2–3 items per checkpoint**, and **8–12 quiz items** if quizzes are
-on. Assign each item a `home` checkpoint and a topic (`fnd`).
+on. Assign each item a `home` checkpoint and a `topic` index into TOPICS.
 
 Write the *wrong* answers first. If you cannot think of three mistakes a real
 learner would make, you do not understand the material well enough to test it

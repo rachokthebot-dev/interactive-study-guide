@@ -9,14 +9,14 @@
  * an item measure nothing. Each carries the reason it's wrong, because
  * the feedback is where the learning happens, not the score.
  *
- * `home` = the checkpoint an item debuts at. `fnd` = foundation, used
- * for the quiz breakdown.
+ * `home` = the checkpoint an item debuts at. `topic` indexes TOPICS,
+ * used for the quiz breakdown.
  * ================================================================= */
-var FND = ['Scarcity & method', 'Incentives', 'Trade-offs', 'Opportunity cost', 'Marginal thinking', 'Trade creates value'];
+var TOPICS = ['Scarcity & method', 'Incentives', 'Trade-offs', 'Opportunity cost', 'Marginal thinking', 'Trade creates value'];
 
 var BANK = [
   /* ---- checkpoint 1: scarcity & incentives ---- */
-  { id: 'sc1', home: 1, fnd: 1, type: 'mcq', short: 'What scarcity means',
+  { id: 'sc1', home: 1, topic: 1, type: 'mcq', short: 'What scarcity means',
     stem: 'A signed poster of a band nobody has heard of exists in only one copy worldwide. Bottled water exists in billions. Which is <em>scarce</em> in the economic sense?',
     opts: [
       { t: 'Bottled water, because people want more of it than can be had at zero cost', ok: true },
@@ -24,7 +24,7 @@ var BANK = [
       { t: 'Both, since both exist in finite amounts', why: 'Finite is not the test. If an item exists in finite quantity but no one wants more of it than exists, there is no scarcity — no allocation problem to solve.' },
       { t: 'Neither, because both can be bought', why: 'Being purchasable is evidence of scarcity, not evidence against it. A price exists precisely because the good is scarce.' }
     ] },
-  { id: 'pn1', home: 1, fnd: 1, type: 'mcq', short: 'Positive vs normative',
+  { id: 'pn1', home: 1, topic: 1, type: 'mcq', short: 'Positive vs normative',
     stem: 'Which of these is a <em>positive</em> statement?',
     opts: [
       { t: 'Rent control reduces the number of apartments available in the long run', ok: true },
@@ -32,7 +32,7 @@ var BANK = [
       { t: 'It is unfair that landlords can raise rents without limit', why: '"Unfair" is a value judgement. Normative statements can be widely agreed with and still be normative.' },
       { t: 'Housing policy is the most important issue facing the state', why: '"Most important" ranks by values, not by evidence. Normative.' }
     ] },
-  { id: 'in1', home: 1, fnd: 2, type: 'mcq', short: 'Direct vs indirect incentive',
+  { id: 'in1', home: 1, topic: 2, type: 'mcq', short: 'Direct vs indirect incentive',
     stem: 'A university replaces letter grades with pass/fail in a tough course. Enrolment rises, and average hours studied per enrolled student falls. Which part is the <em>indirect</em> incentive?',
     opts: [
       { t: 'The drop in study hours, because removing the grade reward lowered the payoff to extra effort', ok: true },
@@ -40,7 +40,7 @@ var BANK = [
       { t: 'Neither, since both were caused by the same policy', why: 'Both being caused by the policy is exactly why they are both incentive effects. Direct vs indirect is about whether the effect was the intended target, not about what caused it.' },
       { t: 'Both equally, because the policy changed two things at once', why: 'The policy changed one thing — the grading rule. The two outcomes differ in kind: one was the goal, one was a side effect.' }
     ] },
-  { id: 'in2', home: 1, fnd: 2, type: 'classify', short: 'Classifying incentives',
+  { id: 'in2', home: 1, topic: 2, type: 'classify', short: 'Classifying incentives',
     stem: 'Sort each one. A <em>positive</em> incentive rewards an action; a <em>negative</em> one penalises it.',
     cats: ['Positive incentive', 'Negative incentive'],
     rows: [
@@ -52,7 +52,7 @@ var BANK = [
     why: 'Watch the bottle deposit: paying the deposit feels like a penalty, but the <em>refund for returning it</em> is the thing that changes behaviour, and it rewards the action. Ask what the incentive does to the cost–benefit of the action you want.' },
 
   /* ---- checkpoint 2: trade-offs ---- */
-  { id: 'to1', home: 2, fnd: 3, type: 'mcq', short: 'Trade-off vs opportunity cost',
+  { id: 'to1', home: 2, topic: 3, type: 'mcq', short: 'Trade-off vs opportunity cost',
     stem: 'You skip a shift to study. You could instead have worked ($90), gone to the gym, or slept. What is the <em>opportunity cost</em> of studying?',
     opts: [
       { t: 'The $90 shift — the single most valuable thing you gave up', ok: true },
@@ -60,7 +60,7 @@ var BANK = [
       { t: 'Zero, since you chose studying and so preferred it', why: 'Preferring your choice does not make it free. Opportunity cost is what the alternative was worth, regardless of which you picked — it is a cost even when the choice is correct.' },
       { t: '$90 plus the value of the gym and the sleep', why: 'Double counting. You could only have done one of them with that time, so only the best one is forgone.' }
     ] },
-  { id: 'to2', home: 2, fnd: 3, type: 'mcq', short: 'No free lunch',
+  { id: 'to2', home: 2, topic: 3, type: 'mcq', short: 'No free lunch',
     stem: 'A campus concert is free to attend, with no ticket and no fee. An economist says it still has a cost. What is the cost?',
     opts: [
       { t: 'The time, which could have gone to the next-best use', ok: true },
@@ -70,11 +70,11 @@ var BANK = [
     ] },
 
   /* ---- checkpoint 3: opportunity cost ---- */
-  { id: 'oc1', home: 3, fnd: 4, type: 'numeric', short: 'Computing economic cost',
+  { id: 'oc1', home: 3, topic: 4, type: 'numeric', short: 'Computing economic cost',
     stem: 'Maya quits a $38,000-a-year job for a two-year master\'s. Tuition is $21,000 a year. Her food and housing cost $15,000 a year — the same as they would have if she had kept working. What is the <em>economic cost</em> of the degree over the two years?',
     pre: '$', answer: 118000, tol: 0,
     why: 'Explicit = $21,000 × 2 = $42,000. Implicit = $38,000 × 2 = $76,000 of forgone salary. Total = <strong>$118,000</strong>. Food and housing are explicitly stated to be unchanged, so they are not a cost <em>of this choice</em> — including them gives $148,000, the single most common wrong answer. Leaving out the forgone salary gives $42,000, the second most common.' },
-  { id: 'oc2', home: 3, fnd: 4, type: 'mcq', short: 'The living-expenses trap',
+  { id: 'oc2', home: 3, topic: 4, type: 'mcq', short: 'The living-expenses trap',
     stem: 'Why do economists normally leave ordinary food and housing out of the cost of attending college?',
     opts: [
       { t: 'Because you would incur them whether or not you attended, so they do not change with the decision', ok: true },
@@ -82,7 +82,7 @@ var BANK = [
       { t: 'Because they are small compared with tuition', why: 'Size is irrelevant, and they often are not small. A cost is excluded because it is unaffected by the choice, not because it is minor.' },
       { t: 'Because students usually have them paid by someone else', why: 'Who pays does not determine whether something is a cost of the decision. The test is whether the cost changes when the decision changes.' }
     ] },
-  { id: 'oc3', home: 3, fnd: 4, type: 'mcq', short: 'Sunk costs',
+  { id: 'oc3', home: 3, topic: 4, type: 'mcq', short: 'Sunk costs',
     stem: 'You paid $600, non-refundable, for a flight. The day before, a free trip you would enjoy far more comes up. What should the $600 do to your decision?',
     opts: [
       { t: 'Nothing — it is gone either way, so compare only the two trips', ok: true },
@@ -92,7 +92,7 @@ var BANK = [
     ] },
 
   /* ---- checkpoint 4: marginal thinking ---- */
-  { id: 'mt1', home: 4, fnd: 5, type: 'mcq', short: 'The stopping rule',
+  { id: 'mt1', home: 4, topic: 5, type: 'mcq', short: 'The stopping rule',
     stem: 'A bakery is deciding how many extra loaves to bake. Which rule maximises net benefit?',
     opts: [
       { t: 'Keep baking while marginal benefit exceeds marginal cost; stop where they are equal', ok: true },
@@ -100,11 +100,11 @@ var BANK = [
       { t: 'Bake the quantity where marginal benefit is highest', why: 'Marginal benefit is usually highest on the very first unit, so this rule says bake almost nothing. It confuses the <em>level</em> of MB with the comparison between MB and MC.' },
       { t: 'Bake while average cost is falling', why: 'Average cost can still be falling when the next unit already costs more than it returns. Decisions at the margin use marginal quantities, not averages.' }
     ] },
-  { id: 'mt2', home: 4, fnd: 5, type: 'numeric', short: 'Finding the optimum',
+  { id: 'mt2', home: 4, topic: 5, type: 'numeric', short: 'Finding the optimum',
     stem: 'For the <em>q</em>-th hour of studying, marginal benefit is MB = 90 − 6q and marginal cost is MC = 18 + 6q. How many <em>whole</em> hours should you study?',
     pre: '', answer: 6, tol: 0,
     why: 'Set MB = MC: 90 − 6q = 18 + 6q → 72 = 12q → q = 6. Check it: hour 6 gives MB 54 against MC 54 — exactly break-even and worth taking; hour 7 gives MB 48 against MC 60, a loss of 12. The answer is <strong>6</strong>. Solving MB = 0 instead gives 15, which is the "maximise total benefit" error.' },
-  { id: 'mt3', home: 4, fnd: 5, type: 'mcq', short: 'Marginal vs all-or-nothing',
+  { id: 'mt3', home: 4, topic: 5, type: 'mcq', short: 'Marginal vs all-or-nothing',
     stem: 'An airline\'s flight has 4 empty seats at departure. Average cost per passenger on the route is $210. A standby traveller offers $70. The extra cost of carrying one more person is about $12. Should they take it?',
     opts: [
       { t: 'Yes — $70 exceeds the $12 marginal cost, so it adds $58', ok: true },
@@ -114,7 +114,7 @@ var BANK = [
     ] },
 
   /* ---- checkpoint 5: trade creates value ---- */
-  { id: 'tv1', home: 5, fnd: 6, type: 'mcq', short: 'Why trade is positive-sum',
+  { id: 'tv1', home: 5, topic: 6, type: 'mcq', short: 'Why trade is positive-sum',
     stem: 'You sell a used textbook for $55. You valued keeping it at $30; the buyer valued having it at $80. How much value did the trade create?',
     opts: [
       { t: '$50 — the gap between what it was worth to each of you', ok: true },
@@ -122,7 +122,7 @@ var BANK = [
       { t: '$55 — the amount of money that changed hands', why: 'Money changing hands is a transfer, not value creation. The value created is the improvement in how well the object is matched to its owner.' },
       { t: '$25 — only your own gain counts, since you were the seller', why: 'Total value created is both surpluses added together: your $25 plus the buyer\'s $25 = $50, which equals $80 − $30.' }
     ] },
-  { id: 'tv2', home: 5, fnd: 6, type: 'mcq', short: 'What price does and does not do',
+  { id: 'tv2', home: 5, topic: 6, type: 'mcq', short: 'What price does and does not do',
     stem: 'Same textbook: your cost $30, buyer\'s value $80. You haggle the price from $55 up to $70. What happens to the <em>total</em> value created?',
     opts: [
       { t: 'It stays $50 — only the split between you changes', ok: true },
@@ -130,7 +130,7 @@ var BANK = [
       { t: 'It falls, because the buyer is worse off', why: 'The buyer is worse off than at $55, but still better off than not trading ($10 of surplus). The total is unchanged — haggling moves the line between the two bars, not the end of the bar.' },
       { t: 'It cannot be determined without knowing who needed the deal more', why: 'Bargaining power determines the <em>split</em>. The size of the pie is fixed by the two valuations alone.' }
     ] },
-  { id: 'tv3', home: 5, fnd: 6, type: 'classify', short: 'Which foundation is this',
+  { id: 'tv3', home: 5, topic: 6, type: 'classify', short: 'Which foundation is this',
     stem: 'Each scenario is built to test one foundation. Name it.',
     cats: ['Incentives', 'Trade-offs', 'Opportunity cost', 'Marginal thinking', 'Trade creates value'],
     rows: [
@@ -145,7 +145,7 @@ var BANK = [
 
 /* The quiz draws from its own pool, interleaved rather than blocked. */
 var QUIZ = [
-  { id: 'q1', fnd: 4, type: 'mcq', short: 'Economic vs accounting profit',
+  { id: 'q1', topic: 4, type: 'mcq', short: 'Economic vs accounting profit',
     stem: 'Devi leaves a $60,000 job to run a shop out of a building she owns and could rent out for $18,000 a year. The shop earns $140,000 in revenue with $55,000 of explicit costs. What is her <em>economic</em> profit?',
     opts: [
       { t: '$7,000', ok: true },
@@ -153,7 +153,7 @@ var QUIZ = [
       { t: '$25,000', why: 'This subtracts the forgone salary but forgets the forgone rent. The building is a resource she owns and uses up, so its rental value is an implicit cost.' },
       { t: '$67,000', why: 'This subtracts the forgone rent but not the salary. Both are implicit costs and both count.' }
     ] },
-  { id: 'q2', fnd: 2, type: 'mcq', short: 'Unintended consequences',
+  { id: 'q2', topic: 2, type: 'mcq', short: 'Unintended consequences',
     stem: 'A city caps rents well below market. Over several years the housing stock available for rent shrinks. In the five-foundations framing, the shrinkage is best described as:',
     opts: [
       { t: 'An indirect incentive effect — landlords respond to a lower payoff by supplying less', ok: true },
@@ -161,11 +161,11 @@ var QUIZ = [
       { t: 'An opportunity cost of the policy', why: 'Loosely, yes — but opportunity cost names the best forgone alternative to a choice. The question asks what produced the shrinkage, and that is landlords responding to incentives.' },
       { t: 'Evidence that trade does not create value in housing', why: 'Nothing here bears on whether trade creates value. The cap restricts which trades may occur; it does not show that the trades were valueless.' }
     ] },
-  { id: 'q4', fnd: 5, type: 'numeric', short: 'Marginal optimum',
+  { id: 'q4', topic: 5, type: 'numeric', short: 'Marginal optimum',
     stem: 'A food truck\'s marginal benefit from the <em>q</em>-th hour open is MB = 120 − 10q; marginal cost is MC = 20 + 10q. How many whole hours should it stay open?',
     pre: '', answer: 5, tol: 0,
     why: '120 − 10q = 20 + 10q → 100 = 20q → q = 5. Hour 5: MB 70, MC 70 — break even, take it. Hour 6: MB 60, MC 80 — a $20 loss. Answer: <strong>5</strong>.' },
-  { id: 'q5', fnd: 6, type: 'mcq', short: 'Gains from trade direction',
+  { id: 'q5', topic: 6, type: 'mcq', short: 'Gains from trade direction',
     stem: 'Two roommates both prefer a tidy kitchen. Ana finds dishes quick and vacuuming miserable; Ben is the reverse. They each specialise and swap. This illustrates:',
     opts: [
       { t: 'Trade creating value through differences in opportunity cost', ok: true },
@@ -173,7 +173,7 @@ var QUIZ = [
       { t: 'Marginal thinking, because each is doing one more chore', why: 'No marginal comparison is being made here. The structure is specialise-then-exchange, which is the trade foundation.' },
       { t: 'A trade-off, because each gives up one chore to do another', why: 'There is a trade-off involved, but the point of the example is that the swap leaves <em>both</em> better off — that is trade creating value.' }
     ] },
-  { id: 'q6', fnd: 4, type: 'mcq', short: 'Sunk cost in business',
+  { id: 'q6', topic: 4, type: 'mcq', short: 'Sunk cost in business',
     stem: 'A studio has spent $40M on a film. Finishing it costs another $10M, and the finished film would earn $25M. Abandoning it earns nothing. What should they do?',
     opts: [
       { t: 'Finish it — $25M beats the $10M still required', ok: true },
@@ -181,7 +181,7 @@ var QUIZ = [
       { t: 'Finish it only if the total eventually exceeds $50M', why: 'That treats the sunk $40M as recoverable. It never is. The only live comparison is $10M more against $25M in.' },
       { t: 'Abandon it to avoid throwing good money after bad', why: 'The phrase describes the opposite error. Here the extra $10M returns $25M — that is good money after a good marginal bet, on top of a loss that exists regardless.' }
     ] },
-  { id: 'q8', fnd: 3, type: 'mcq', short: 'Opportunity cost of a gift',
+  { id: 'q8', topic: 3, type: 'mcq', short: 'Opportunity cost of a gift',
     stem: 'You receive a non-transferable, non-refundable ticket to a Saturday game. You would otherwise have worked a $120 shift, or studied (worth about $60 to you). The opportunity cost of attending is:',
     opts: [
       { t: '$120', ok: true },
@@ -189,7 +189,7 @@ var QUIZ = [
       { t: '$180', why: 'Summing the alternatives double-counts the same block of time. You could only have done one of them.' },
       { t: 'The face value printed on the ticket', why: 'Face value is irrelevant: it is neither what you paid (nothing) nor what you gave up (the shift).' }
     ] },
-  { id: 'q9', fnd: 2, type: 'classify', short: 'Direct or indirect',
+  { id: 'q9', topic: 2, type: 'classify', short: 'Direct or indirect',
     stem: 'A city installs speed bumps on a residential street. Classify each outcome.',
     cats: ['Direct effect', 'Indirect effect'],
     rows: [
@@ -199,11 +199,11 @@ var QUIZ = [
       { t: 'Collisions on the treated street decline', cat: 'Direct effect' }
     ],
     why: 'The test is whether the outcome is the one the policy was aiming at. Speed and collisions on the treated street are the target; everything that happens <em>elsewhere</em> or to <em>other objectives</em> is the indirect incentive at work.' },
-  { id: 'q10', fnd: 6, type: 'numeric', short: 'Total surplus',
+  { id: 'q10', topic: 6, type: 'numeric', short: 'Total surplus',
     stem: 'A seller would part with a bike for no less than $140. A buyer values it at $230. They settle at $185. What is the total value created by the trade?',
     pre: '$', answer: 90, tol: 0,
     why: '$230 − $140 = <strong>$90</strong>. Split: consumer surplus $45, producer surplus $45 — but you did not need the price to get the total. $185 is there to see whether you reach for the price; the total depends only on the two valuations.' },
-  { id: 'q11', fnd: 5, type: 'mcq', short: 'Average vs marginal',
+  { id: 'q11', topic: 5, type: 'mcq', short: 'Average vs marginal',
     stem: 'A gym\'s average cost per member is $42/month. Adding one more member to an under-capacity gym costs about $4/month. A prospect offers $20/month. Taking the offer:',
     opts: [
       { t: 'Adds $16/month, because the relevant comparison is marginal cost', ok: true },
@@ -211,7 +211,7 @@ var QUIZ = [
       { t: 'Breaks even, since discounts cancel out across members', why: 'Nothing cancels. The gym receives $20 and incurs $4, a gain of $16.' },
       { t: 'Cannot be evaluated without knowing total membership', why: 'Total membership would matter if the gym were at capacity — then the marginal cost would be much higher. The question states it is under capacity.' }
     ] },
-  { id: 'q12', fnd: 1, type: 'mcq', short: 'Scarcity and the three questions',
+  { id: 'q12', topic: 1, type: 'mcq', short: 'Scarcity and the three questions',
     stem: 'Why does every society, regardless of its politics, have to answer what to produce, how, and for whom?',
     opts: [
       { t: 'Because resources are scarce relative to wants, so not everything can be produced at once', ok: true },

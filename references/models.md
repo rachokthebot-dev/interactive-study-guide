@@ -70,7 +70,7 @@ From `helpers.js` — do not redefine these:
 | Helper | Does |
 |---|---|
 | `$(sel, root)` `el(id)` | query helpers |
-| `money(n)` `pct(n,d)` `clamp(v,lo,hi)` | formatting |
+| `money(n)` `pct(n,d)` `clamp(v,lo,hi)` | formatting — `money` is USD/en-US; write your own for other units |
 | `scale(d0,d1,p0,p1)` | domain → pixel mapping |
 | `txt(x,y,s,{a,s,f,ls})` | SVG text; `a` anchor, `s` size, `f` fill |
 | `line(x1,y1,x2,y2,c,w,dash)` | SVG line |

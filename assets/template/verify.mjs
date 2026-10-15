@@ -43,7 +43,7 @@ const bank = await p.evaluate(() => {
   const probs = [];
   const check = (q, where) => {
     if (!q.short) probs.push(`${q.id}: no short label`);
-    if (q.fnd === undefined || !FND[q.fnd - 1]) probs.push(`${q.id}: bad fnd ${q.fnd}`);
+    if (q.topic === undefined || !TOPICS[q.topic - 1]) probs.push(`${q.id}: bad topic ${q.topic}`);
     if (q.type === 'mcq') {
       const right = q.opts.filter(o => o.ok);
       if (right.length !== 1) probs.push(`${q.id}: ${right.length} correct options`);
@@ -64,9 +64,9 @@ const bank = await p.evaluate(() => {
   const homes = [...new Set(BANK.map(q => q.home))].sort();
   if (JSON.stringify(homes) !== JSON.stringify(CHAPTER.anchors.map((_, i) => i + 1)))
     probs.push(`BANK homes ${homes} don't match ${CHAPTER.anchors.length} checkpoints`);
-  const fndUsed = new Set(QUIZ.map(q => q.fnd));
-  if (fndUsed.size < FND.length) probs.push(`quiz covers ${fndUsed.size} of ${FND.length} topics`);
-  return { probs, bank: BANK.length, quiz: QUIZ.length, topics: FND.length };
+  const topicsUsed = new Set(QUIZ.map(q => q.topic));
+  if (topicsUsed.size < TOPICS.length) probs.push(`quiz covers ${topicsUsed.size} of ${TOPICS.length} topics`);
+  return { probs, bank: BANK.length, quiz: QUIZ.length, topics: TOPICS.length };
 });
 bank.probs.forEach(x => { fails.push(x); console.log('  FAIL ' + x); });
 ok(bank.probs.length === 0, `item bank well formed (${bank.bank} checkpoint + ${bank.quiz} quiz, ${bank.topics} topics)`);

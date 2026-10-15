@@ -1,2 +1,4 @@
 node_modules
 *.log
+assets/template/index.html
+assets/template/ch*.html

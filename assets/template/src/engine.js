@@ -10,7 +10,7 @@
  * count, so the schedule just makes sure they happen, spaced.
  * ================================================================= */
 var Store = (function () {
-  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
+  var KEY = CHAPTER.key + '.' + CHAPTER.id + '.v1', db;
   try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
   if (!db.items) db.items = {};
   function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
@@ -58,7 +58,7 @@ var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r=
 function renderQ(q, n, isReview) {
   var h = '<div class="q" data-id="' + q.id + '">';
   h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
-       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       '<span class="pill">' + TOPICS[q.topic - 1] + '</span>' +
        (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
   h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
        (isReview ? '<span class="re">recall</span>' : '') + '</div>';
@@ -278,7 +278,7 @@ function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
       reveal(node, q, ok, picks[q.id], true);
       Store.record(q.id, ok, 99);
       if (ok) right++;
-      var f = FND[q.fnd - 1];
+      var f = TOPICS[q.topic - 1];
       byFnd[f] = byFnd[f] || { n: 0, k: 0 };
       byFnd[f].n++; if (ok) byFnd[f].k++;
     });
@@ -328,18 +328,19 @@ railUpdate();
 
 /* The export pattern from the HTML-effectiveness post: turn what the page
  * knows back into something you can paste into a prompt. */
+var SUBJECT = CHAPTER.course + (CHAPTER.source ? ' (' + CHAPTER.source + ')' : '');
 el('btn-export').addEventListener('click', function () {
   var m = Store.missed();
   var txt = m.length
-    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
+    ? 'I am studying ' + SUBJECT + ', ' + CHAPTER.title + '.\n' +
       'I got these specific items wrong and have not yet re-earned them:\n\n' +
       m.map(function (q, i) {
-        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+        return (i + 1) + '. [' + TOPICS[q.topic - 1] + '] ' + q.short + '\n   ' +
                q.stem.replace(/<[^>]+>/g, '');
       }).join('\n\n') +
       '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
       'Do not re-explain the parts I got right.'
-    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+    : 'I am studying ' + SUBJECT + ', ' + CHAPTER.title + ', and have no outstanding missed items. ' +
       'Quiz me on the hardest exam-level applications of this chapter.';
   navigator.clipboard.writeText(txt).then(function () {
     el('export-note').textContent = m.length
@@ -351,7 +352,7 @@ el('btn-export').addEventListener('click', function () {
 });
 
 el('btn-reset').addEventListener('click', function () {
-  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  if (!confirm('Clear all progress for ' + CHAPTER.num + '? This cannot be undone.')) return;
   Store.nuke();
   location.reload();
 });
