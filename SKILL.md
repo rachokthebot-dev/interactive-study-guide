@@ -1,0 +1,143 @@
+---
+name: interactive-study-guide
+description: >-
+  Build an interactive, self-teaching study guide for any subject — short reading
+  chunks, live models the learner can push on, retrieval checkpoints spaced
+  through the material, and an optional quiz per chapter. Output is one
+  self-contained HTML file per chapter: no build step, no dependencies, works
+  offline from file://, and ready to drop on any static host. Use when someone
+  wants to learn or teach a body of material and a document is not enough:
+  "make a study guide for X", "help me revise X", "turn these notes into
+  something interactive", "build a course on X for my team", "I have a midterm
+  on X", "onboarding material for X". Also use when editing a guide already
+  built from this skill — look for src/chNN/, build.py and verify.mjs.
+  SKIP for: a single chart (use dataviz); a static diagram (use
+  artifact-diagramming); a slide deck; a reference doc with no practice;
+  a simulation of one mechanism with no curriculum (use isometric-explainer).
+license: MIT
+---
+
+# Interactive study guides
+
+You are building something a learner **works through**, not something they read.
+The unit is a chapter: a few short chunks of explanation, models they can push
+on, and questions that come back at them on a schedule.
+
+Read this file, then `references/build-order.md`, and follow it. The other
+references are lookups for when you reach the part they cover.
+
+## Ask first
+
+Do not start writing until you have these. Ask in **one** batch, and suggest
+defaults rather than interrogating:
+
+1. **Subject, and who it is for.** "Intro macroeconomics, first-year
+   undergraduates" and "our auth service, new backend hires" produce very
+   different guides.
+2. **Source material.** A textbook and edition, a syllabus, their own notes, a
+   repo, a set of docs — or nothing, in which case say you are working from
+   general knowledge and that they should check it against their syllabus.
+3. **How many chapters, and their titles.** If they do not know, propose an
+   outline from the subject and have them correct it. Chapters are 20–30
+   minutes of work each.
+4. **Quizzes?** Yes gives each chapter a graded end-of-chapter quiz. No keeps
+   the inline checkpoints — which are the core of the method — and drops the
+   graded quiz. Default yes.
+5. **Anything that must be covered**, and anything that must not.
+
+Then state the plan back in three lines and start. Build **one chapter first**
+and have them look at it before you write the rest; the shape is much easier to
+correct early.
+
+## The five rules
+
+Break one and you get a slide deck with a quiz bolted on.
+
+1. **Compute the real thing.** A model must actually do the work — the real
+   arithmetic, the real algorithm, at reduced scale. Never interpolate between
+   pre-baked results, never hard-code the answer the figure shows. When the
+   learner drags a slider the numbers move because the model moved. See
+   `references/models.md`.
+2. **Retrieval beats re-reading, so interrupt them.** Every chunk ends with a
+   checkpoint they answer from memory before scrolling on. Spaced retrieval
+   practice is the largest effect in the learning literature (g ≈ 0.74); a
+   chapter they only read is worth a fraction of one they answered.
+3. **Every wrong answer is a real misconception, and says why.** A distractor
+   nobody would pick measures nothing. Write the mistakes learners actually
+   make, and attach the rebuttal to each one — the feedback is where the
+   learning happens. See `references/item-writing.md`.
+4. **Publish a fidelity ledger.** Say what is genuinely computed, what is
+   scaled down, and what is assumed — in the chapter and in the README. Half
+   the value of a model is knowing which of its numbers to trust.
+5. **One self-contained file per chapter.** Everything inlined, no build step in
+   the output, no network calls. It opens from `file://`, works offline, and
+   deploys to any static host unchanged.
+
+## Deployment is not your job
+
+Build local files and stop. Say the guide is ready and that they can ask you to
+deploy it — do not create repos, push, or enable hosting unless they ask in a
+separate turn. The output is static and headless precisely so that deploying it
+later is trivial for any host they choose.
+
+## Layout
+
+```
+my-guide/
+  index.html              hub page, generated from the chapter list
+  chNN-slug.html          ONE self-contained file per chapter — the deliverable
+  build.py                assembles chapters from src/. Authoring-time only.
+  verify.mjs              headless checks. Run before claiming anything works.
+  README.md               what it is, how to verify, the fidelity ledger
+  src/
+    guide.css             design system. Shared. Rarely edit.
+    helpers.js            SVG + formatting helpers, the stepper. Shared. Don't edit.
+    engine.js             scheduling, question rendering, quiz. Shared. Don't edit.
+    chNN/
+      meta.json           title, hero, nav, checkpoint anchors
+      body.html           the chunks, applet shells, checkpoint shells
+      models.js           THE LESSON. The real computation. Write this first.
+      bank.js             checkpoint items + quiz items
+      spec.json           hand-computed values the verifier pins
+```
+
+`guide.css`, `helpers.js` and `engine.js` are the engine — copy them and change
+nothing. Everything under `src/chNN/` is yours.
+
+## Start here
+
+```bash
+cp -r <skill-dir>/assets/template my-guide
+cd my-guide && python3 build.py && python3 -m http.server 8000
+```
+
+The template is a complete chapter — *The Five Foundations of Economics*, with
+four working models, five checkpoints and a quiz. **Open it before you change
+anything.** Answer a checkpoint, get one wrong on purpose, scroll on and watch
+it come back. You are trying to reproduce that feeling, not that subject.
+
+Then work through `references/build-order.md`. Do not start with the prose.
+
+## Verify before you claim it works
+
+These pages fail silently: one thrown error gives you a clean-looking screen
+with dead sliders and empty question cards. Always run this before reporting
+done.
+
+```bash
+for f in src/*.js src/ch*/*.js; do node --check "$f" || echo "FAIL $f"; done
+python3 build.py
+python3 -m http.server 8000 &
+node verify.mjs http://localhost:8000/chNN-slug.html src/chNN/spec.json
+```
+
+`verify.mjs` fails on any console error, checks the item bank for authoring bugs
+(no correct answer, two correct answers, a distractor with no explanation, a
+classify row outside its category list), drives every slider to confirm it moves
+its model, answers a checkpoint and reloads to confirm the spaced-recall queue
+really brings items back, and grades the quiz against a key read from the page's
+own data.
+
+`spec.json` is the part that catches *you*: pin readouts to values you worked
+out by hand. It has already caught a model bug and an arithmetic slip in a
+hand-computed answer. Do not skip it.

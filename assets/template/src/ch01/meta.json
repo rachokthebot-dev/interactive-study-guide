@@ -1,0 +1,65 @@
+{
+  "id": "ch01",
+  "file": "ch01-five-foundations.html",
+  "title": "Chapter 01 \u2014 The Five Foundations of Economics",
+  "desc": "Incentives, trade-offs, opportunity cost, marginal thinking and trade \u2014 four live models, spaced retrieval checkpoints and a chapter quiz.",
+  "anchors": [
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "quiz"
+  ],
+  "navTicks": {
+    "#c1": 1,
+    "#c2": 2,
+    "#c3": 3,
+    "#c4": 4,
+    "#c5": 5
+  },
+  "num": "Chapter 01",
+  "h1": "Five ideas that carry the <em>whole</em> course",
+  "intro": "Every later chapter is one of these five wearing a different hat \u2014 supply and demand is trade-offs with a graph, elasticity is marginal thinking with a ratio. Read a chunk, then answer the checkpoint from memory before scrolling on.",
+  "stats": "6 chunks \u00b7 4 live models \u00b7 5 checkpoints \u00b7 10-question quiz",
+  "herotag": "the five",
+  "herosub": "everything hangs off these",
+  "next": "Next: <strong>Chapter 02 \u2014 Gains from trade</strong>",
+  "toc": [
+    [
+      "c0",
+      "Scarcity",
+      "00"
+    ],
+    [
+      "c1",
+      "Incentives",
+      "01"
+    ],
+    [
+      "c2",
+      "Trade-offs",
+      "02"
+    ],
+    [
+      "c3",
+      "Opportunity cost",
+      "03"
+    ],
+    [
+      "c4",
+      "Marginal thinking",
+      "04"
+    ],
+    [
+      "c5",
+      "Trade creates value",
+      "05"
+    ],
+    [
+      "quiz",
+      "Chapter quiz",
+      "\u25b8"
+    ]
+  ],
+  "hero": "<svg viewBox=\"0 0 280 180\"><line x1=\"24\" y1=\"158\" x2=\"268\" y2=\"158\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><g font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#3D3D3A\" text-anchor=\"middle\"><rect x=\"24\" y=\"40\" width=\"38\" height=\"118\" rx=\"5\" fill=\"#D97757\"/><text x=\"43\" y=\"172\">Incent</text><rect x=\"72\" y=\"58\" width=\"38\" height=\"100\" rx=\"5\" fill=\"#E3DACC\"/><text x=\"91\" y=\"172\">Trade-off</text><rect x=\"120\" y=\"28\" width=\"38\" height=\"130\" rx=\"5\" fill=\"#D97757\"/><text x=\"139\" y=\"172\">Opp cost</text><rect x=\"168\" y=\"46\" width=\"38\" height=\"112\" rx=\"5\" fill=\"#E3DACC\"/><text x=\"187\" y=\"172\">Marginal</text><rect x=\"216\" y=\"70\" width=\"38\" height=\"88\" rx=\"5\" fill=\"#788C5D\" opacity=\"0.55\"/><text x=\"235\" y=\"172\">Trade</text></g><text x=\"268\" y=\"20\" text-anchor=\"end\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#87867F\" letter-spacing=\"1\">EXAM WEIGHT \u2192</text></svg>"
+}

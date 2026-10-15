@@ -1,0 +1,497 @@
+<!-- ============================ chunk 0 ============================ -->
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Scarcity is the reason economics exists</h2><span class="count">chunk 1 of 6</span></div>
+  <p class="sec-intro">
+    One idea and two vocabulary splits that show up on every exam in the course.
+  </p>
+  <div class="sec-body">
+    <p>
+      <strong>Economics is the study of how people allocate scarce resources.</strong> That is the whole
+      subject. The engine underneath it is scarcity.
+    </p>
+    <div class="card trap">
+      <div class="label">The trap everyone falls into first</div>
+      <p>
+        <strong>Scarcity does not mean "rare."</strong> Water is abundant and still scarce — you cannot
+        have unlimited amounts at zero cost. A signed photo of a band nobody likes is rare and <em>not</em>
+        scarce, because nobody wants it. Rare is about supply; scarce is about supply <em>relative to
+        wants</em>.
+      </p>
+    </div>
+    <p>
+      So every society answers the same three questions: what to produce, how, and who gets it. The rest of
+      the course is machinery for answering those.
+    </p>
+    <h4>Two splits you will be asked to make</h4>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Split</th><th>One side</th><th>Other side</th><th>How to tell</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Scale</strong></td>
+          <td><strong>Micro</strong> — individual decision-makers: a household, a firm, one market</td>
+          <td><strong>Macro</strong> — the economy as a whole: inflation, unemployment, growth</td>
+          <td>Count the actors. One market or one chooser → micro.</td>
+        </tr>
+        <tr>
+          <td><strong>Claim type</strong></td>
+          <td><strong>Positive</strong> — testable, factual: "a $15 minimum wage reduces teen employment"</td>
+          <td><strong>Normative</strong> — value judgement: "a $15 minimum wage is fair"</td>
+          <td>Could data settle it? Yes → positive. Words like <em>should</em>, <em>fair</em>, <em>ought</em> → normative.</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p>
+      Positive statements can be wrong and still be positive — "the earth is flat" is a positive statement.
+      The test is whether evidence <em>could</em> decide it, not whether the claim is true.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ chunk 1 ============================ -->
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Foundation 1 — Incentives</h2><span class="count">chunk 2 of 6</span></div>
+  <p class="sec-intro">
+    People respond to incentives, predictably, and often in ways the person designing the incentive did not
+    plan. This foundation is where most exam questions about "unintended consequences" come from.
+  </p>
+  <div class="sec-body">
+    <p>
+      An <strong>incentive</strong> is anything that changes the costs or benefits of an action. Two
+      classifications matter, and exam questions almost always turn on the second one.
+    </p>
+    <ul>
+      <li><strong>Positive vs negative.</strong> Positive incentives make an action more attractive (a
+        rebate, a bonus, a scholarship). Negative incentives make it less attractive (a fine, a tax, a
+        late fee). Both work by changing cost–benefit.</li>
+      <li><strong>Direct vs indirect.</strong> A <strong>direct</strong> incentive gives the result you were
+        aiming at. An <strong>indirect</strong> incentive is the side effect nobody put in the press
+        release. Indirect incentives are where the interesting economics lives.</li>
+    </ul>
+    <div class="card">
+      <div class="label">Worked example — seat belts</div>
+      <p>
+        Mandatory seat belts have a <strong>direct</strong> effect: a given crash is more survivable, so
+        deaths per crash fall. They also have an <strong>indirect</strong> effect: feeling safer, some
+        drivers drive a little faster and follow a little closer, so the number of crashes rises — including
+        crashes involving pedestrians and cyclists, who got no seat belt. The net effect on total deaths is
+        an empirical question, and that is exactly the point. Identifying the indirect incentive is the
+        skill being tested; you are not expected to know the net sign from memory.
+      </p>
+    </div>
+    <p>
+      Try it on a real policy. The model below is the actual arithmetic of a city bag fee — how many
+      shoppers switch, how much plastic that saves, and how much of the saving the indirect incentive
+      eats back.
+    </p>
+
+    <div class="applet" id="ap-bag">
+      <span class="tag">model · live</span>
+      <div class="ap-title">A plastic-bag fee, and the incentive nobody voted for</div>
+      <div class="ap-sub">10,000 households · 2.5 shopping trips/week · 4 bags/trip</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="bag-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Fee per bag</span><span class="cv" id="bag-fee-v">10¢</span></div>
+            <input type="range" id="bag-fee" min="0" max="40" step="1" value="10">
+            <div class="ch">The negative incentive. Raising it moves shoppers to reusable bags.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>How much shoppers mind carrying their own</span><span class="cv" id="bag-h-v">25¢</span></div>
+            <input type="range" id="bag-h" min="5" max="60" step="1" value="25">
+            <div class="ch">The most reluctant shopper's hassle cost. Shoppers switch when the fee exceeds their own hassle cost.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Share who reused free bags as bin liners</span><span class="cv" id="bag-l-v">40%</span></div>
+            <input type="range" id="bag-l" min="0" max="100" step="5" value="40">
+            <div class="ch">The indirect incentive. These households now <em>buy</em> trash bags — which are thicker.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Switch to reusable</div><div class="rv" id="bag-ro-switch">—</div></div>
+            <div class="ro"><div class="rl">Bags / week</div><div class="rv" id="bag-ro-bags">—</div></div>
+            <div class="ro"><div class="rl">Fee revenue / wk</div><div class="rv" id="bag-ro-rev">—</div></div>
+            <div class="ro"><div class="rl">Plastic avoided</div><div class="rv" id="bag-ro-gross">—</div></div>
+            <div class="ro"><div class="rl">Liner offset</div><div class="rv" id="bag-ro-off">—</div></div>
+            <div class="ro hero"><div class="rl">Net plastic saved</div><div class="rv" id="bag-ro-net">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="bag-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Scarcity &amp; incentives · answer from memory, not by scrolling up</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 2 ============================ -->
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Foundation 2 — Trade-offs</h2><span class="count">chunk 3 of 6</span></div>
+  <p class="sec-intro">
+    Scarcity forces choice, and choice means giving something up. It gets its own foundation because
+    students collapse it into opportunity cost, and the exam distinguishes them.
+  </p>
+  <div class="sec-body">
+    <p>
+      <strong>There is no such thing as a free lunch.</strong> Every choice costs you the alternatives —
+      including the ones that feel free. A free concert costs you the three hours.
+    </p>
+    <div class="card accent">
+      <div class="label">Trade-off vs opportunity cost — the distinction</div>
+      <p>
+        A <strong>trade-off</strong> is the fact that choosing one thing means giving up others. It is
+        plural and qualitative: "studying tonight means no gym, no party, no shift at work."
+      </p>
+      <p>
+        An <strong>opportunity cost</strong> is the <em>single highest-valued</em> alternative you gave up,
+        and it carries a number. "Studying tonight cost me the $80 shift" — the one you'd actually have
+        picked.
+      </p>
+      <p style="margin-bottom:0">
+        Trade-offs are the menu of things forgone. Opportunity cost is the best item on that menu. If a
+        question says "list the trade-offs" and you name one thing, you lost points; if it says "what is
+        the opportunity cost" and you name three, you also lost points.
+      </p>
+    </div>
+    <p>
+      Trade-offs are why the <strong>production possibilities curve</strong> in Chapter 3 slopes downward
+      and why budget constraints in Chapter 4 are straight lines. When you meet those, you are meeting
+      this foundation with axes attached.
+    </p>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Trade-offs · plus a callback to earlier material</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 3 ============================ -->
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>Foundation 3 — Opportunity cost</h2><span class="count">chunk 4 of 6</span></div>
+  <p class="sec-intro">
+    The most tested idea in the chapter. Three rules cover every version of it you will see.
+  </p>
+  <div class="sec-body">
+    <p>
+      <strong>Opportunity cost is the value of the highest-valued alternative you gave up.</strong> Three
+      rules follow, and each one is a graded exam trap.
+    </p>
+    <h4>Rule 1 — Count implicit costs, not just the money</h4>
+    <p>
+      <strong>Explicit costs</strong> are payments you actually make: tuition, rent on a shop, wages to
+      employees. <strong>Implicit costs</strong> are the value of resources you already own and use up:
+      the salary you did not earn, the rent you did not collect on your own building, the interest your
+      own capital did not make.
+    </p>
+    <p>
+      Accountants count explicit costs. Economists count both. That is the entire difference between
+      <strong>accounting profit</strong> (revenue − explicit) and <strong>economic profit</strong>
+      (revenue − explicit − implicit), and it is why a business can be "profitable" and still worth
+      shutting down.
+    </p>
+    <h4>Rule 2 — Only count what actually changes</h4>
+    <p>
+      If a cost happens whether or not you choose the thing, it is not part of the opportunity cost of
+      choosing it. Food and housing while you are in college are the classic case: you eat either way, so
+      ordinary living expenses are <em>not</em> a cost of attending. Only the <em>difference</em> counts —
+      if dorm housing costs $4,000 more than living at home would, that $4,000 is in.
+    </p>
+    <h4>Rule 3 — Sunk costs are gone, so ignore them</h4>
+    <p>
+      A <strong>sunk cost</strong> is already spent and unrecoverable. It cannot be an opportunity cost of
+      a future decision, because no future choice can get it back. You paid $60 for a concert ticket, you
+      now feel ill: the $60 is gone in both worlds. The only live question is whether a miserable evening
+      out beats a comfortable evening in.
+    </p>
+    <p>
+      Here is Rule 1 and Rule 2 as arithmetic. Toggle the living-expenses switch to watch the most common
+      wrong answer inflate the number.
+    </p>
+
+    <div class="applet" id="ap-oc">
+      <span class="tag">model · live</span>
+      <div class="ap-title">What a degree actually costs</div>
+      <div class="ap-sub">economic cost = explicit + implicit · everything below is computed, not looked up</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="oc-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Tuition &amp; fees / year</span><span class="cv" id="oc-t-v">$16,000</span></div>
+            <input type="range" id="oc-t" min="0" max="40000" step="500" value="16000">
+            <div class="ch">Explicit. You write this cheque.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Salary you'd have earned / year</span><span class="cv" id="oc-w-v">$34,000</span></div>
+            <input type="range" id="oc-w" min="0" max="70000" step="1000" value="34000">
+            <div class="ch">Implicit. Nobody bills you for it, and it is usually the biggest number here.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Years to finish</span><span class="cv" id="oc-y-v">4</span></div>
+            <input type="range" id="oc-y" min="1" max="7" step="1" value="4">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Salary gain after graduating / year</span><span class="cv" id="oc-g-v">$22,000</span></div>
+            <input type="range" id="oc-g" min="2000" max="60000" step="1000" value="22000">
+          </div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="oc-live">
+            <label for="oc-live">Also count $14,000/yr of food &amp; housing <em>(this is the wrong answer — switch it on and see what it does)</em></label>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Explicit cost</div><div class="rv" id="oc-ro-ex">—</div></div>
+            <div class="ro"><div class="rl">Implicit cost</div><div class="rv" id="oc-ro-im">—</div></div>
+            <div class="ro hero"><div class="rl">Economic cost</div><div class="rv" id="oc-ro-tot">—</div></div>
+            <div class="ro"><div class="rl">"Tuition only" answer</div><div class="rv" id="oc-ro-wrong">—</div></div>
+            <div class="ro good"><div class="rl">Years to break even</div><div class="rv" id="oc-ro-be">—</div></div>
+            <div class="ro"><div class="rl">Understated by</div><div class="rv" id="oc-ro-gap">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="oc-note"></p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Opportunity cost · the heaviest-weighted checkpoint in the chapter</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 4 ============================ -->
+<section id="c4">
+  <div class="sec-head"><span class="idx">04</span><h2>Foundation 4 — Marginal thinking</h2><span class="count">chunk 5 of 6</span></div>
+  <p class="sec-intro">
+    Decisions are rarely all-or-nothing. They are "a bit more or a bit less," and the rule for finding the
+    right amount is the most reusable tool in the course.
+  </p>
+  <div class="sec-body">
+    <p>
+      <strong>Marginal</strong> means "one more unit." <strong>Marginal benefit</strong> is the extra
+      benefit from one more unit; <strong>marginal cost</strong> is the extra cost. Thinking at the margin
+      means asking "is the <em>next</em> one worth it?" rather than "is this activity worth doing at all?"
+    </p>
+    <div class="card accent">
+      <div class="label">The rule</div>
+      <p style="margin-bottom:0">
+        Keep going while <strong>MB &gt; MC</strong>. Stop where <strong>MB = MC</strong>. That point
+        maximises <em>net</em> benefit — total benefit minus total cost — and it is the same rule that will
+        later give you profit maximisation, the optimal consumption bundle, and the efficient quantity in
+        a market.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">Two wrong stopping rules that look right</div>
+      <ul style="margin-bottom:0">
+        <li><strong>"Keep going while total benefit is still rising."</strong> Total benefit keeps rising
+          long after each extra unit has stopped being worth its cost. This rule massively overshoots.</li>
+        <li><strong>"Stop where marginal benefit is highest."</strong> MB is usually highest at the very
+          first unit, so this rule tells you to do almost nothing.</li>
+      </ul>
+    </div>
+    <p>
+      The model below computes it unit by unit. Drag the quantity and watch net benefit — the bottom curve —
+      peak exactly where the two lines cross, and crash if you follow either wrong rule.
+    </p>
+
+    <div class="applet" id="ap-mt">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Where to stop: hours of studying this week</div>
+      <div class="ap-sub">MB falls as you tire · MC rises as you give up better alternatives · net = Σ(MB − MC)</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="mt-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Hours you choose</span><span class="cv" id="mt-q-v">6 hr</span></div>
+            <input type="range" id="mt-q" min="1" max="14" step="1" value="6">
+            <div class="ch">Your decision variable. The optimum is marked on the figure.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Value of the first hour (MB intercept)</span><span class="cv" id="mt-a-v">100</span></div>
+            <input type="range" id="mt-a" min="60" max="140" step="4" value="100">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>How fast alternatives get precious (MC slope)</span><span class="cv" id="mt-d-v">4</span></div>
+            <input type="range" id="mt-d" min="1" max="12" step="1" value="4">
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">MB of that hour</div><div class="rv" id="mt-ro-mb">—</div></div>
+            <div class="ro"><div class="rl">MC of that hour</div><div class="rv" id="mt-ro-mc">—</div></div>
+            <div class="ro"><div class="rl">Net benefit here</div><div class="rv" id="mt-ro-net">—</div></div>
+            <div class="ro hero"><div class="rl">Optimal hours</div><div class="rv" id="mt-ro-opt">—</div></div>
+            <div class="ro good"><div class="rl">Best possible net</div><div class="rv" id="mt-ro-best">—</div></div>
+            <div class="ro"><div class="rl">Net if you chase total benefit</div><div class="rv" id="mt-ro-greedy">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="mt-note"></p>
+    </div>
+
+    <div class="check" id="ck4"><span class="tag">checkpoint 04</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Marginal thinking · one of these is numeric</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 5 ============================ -->
+<section id="c5">
+  <div class="sec-head"><span class="idx">05</span><h2>Foundation 5 — Trade creates value</h2><span class="count">chunk 6 of 6</span></div>
+  <p class="sec-intro">
+    The least intuitive foundation, because ordinary language treats deals as win–lose. They aren't.
+  </p>
+  <div class="sec-body">
+    <p>
+      <strong>Voluntary trade creates value.</strong> Nothing new is manufactured in the moment of
+      exchange, yet both sides end up better off. That is not a paradox — value is not a property of an
+      object, it is a relationship between an object and a person. Move the object to the person who
+      values it more and total value has gone up.
+    </p>
+    <p>
+      So trade is <strong>positive-sum</strong>: both parties gain, or at minimum neither loses, because
+      either party could have walked away. This is why "if I gained, they must have lost" is wrong, and
+      why it is wrong for international trade too.
+    </p>
+    <div class="card">
+      <div class="label">Where the gains come from</div>
+      <p style="margin-bottom:0">
+        Trade is worth doing when people value things differently — usually because they can
+        <em>produce</em> things at different opportunity costs. That is <strong>comparative
+        advantage</strong>, and it is the whole of Chapter 2. Keep the shape of it in mind now: each side
+        specialises where its own opportunity cost is lowest, then trades for the rest.
+      </p>
+    </div>
+    <p>
+      Drag the price below. Watch the two surplus bars trade size against each other while their
+      <em>sum never moves</em> — that is the one result in this applet worth memorising.
+    </p>
+
+    <div class="applet" id="ap-tv">
+      <span class="tag">model · live</span>
+      <div class="ap-title">One buyer, one seller, a used textbook</div>
+      <div class="ap-sub">consumer surplus = value − price · producer surplus = price − cost</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="tv-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>What it's worth to the buyer</span><span class="cv" id="tv-b-v">$80</span></div>
+            <input type="range" id="tv-b" min="0" max="120" step="2" value="80">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>What the seller gives up to part with it</span><span class="cv" id="tv-s-v">$30</span></div>
+            <input type="range" id="tv-s" min="0" max="120" step="2" value="30">
+            <div class="ch">The seller's own opportunity cost — keeping it, or selling it elsewhere.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Agreed price</span><span class="cv" id="tv-p-v">$55</span></div>
+            <input type="range" id="tv-p" min="0" max="120" step="1" value="55">
+            <div class="ch">Slide it outside the shaded band and the trade stops happening.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Consumer surplus</div><div class="rv" id="tv-ro-cs">—</div></div>
+            <div class="ro"><div class="rl">Producer surplus</div><div class="rv" id="tv-ro-ps">—</div></div>
+            <div class="ro hero"><div class="rl">Total value created</div><div class="rv" id="tv-ro-tot">—</div></div>
+            <div class="ro"><div class="rl">Bargaining range</div><div class="rv" id="tv-ro-range">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="tv-note"></p>
+    </div>
+
+    <div class="check" id="ck5"><span class="tag">checkpoint 05</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Trade creates value · plus callbacks from across the chapter</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ quiz ============================ -->
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">
+    Shuffled, not blocked — mixing topics beats grouping them (d ≈ 0.35) even though it feels harder.
+    Feeling fluent is not the goal; being right in week 10 is.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All five foundations, shuffled</div>
+      <div class="ck-s">no feedback until you submit · mirrors how the real midterm feels</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<!-- ============================ ledger ============================ -->
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed, and what isn't</h2></div>
+  <p class="sec-intro">
+    Half the value of a model is knowing which numbers to trust. Everything here is computed, not looked
+    up. The honest boundary:
+  </p>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Assumed / simplified</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Bag fee</td>
+          <td>Share switching from a uniform distribution of hassle costs; bags used; fee revenue; plastic
+              avoided and the bin-liner offset, by mass.</td>
+          <td>Hassle costs are uniform (real ones aren't). Trips, bags/trip, and bag masses (5.5 g vs 20 g
+              liner) are fixed stand-ins, not survey data. No price effect on groceries.</td>
+        </tr>
+        <tr>
+          <td>Degree cost</td>
+          <td>Explicit, implicit and total economic cost; the tuition-only answer; the gap between them;
+              break-even years from the salary gain.</td>
+          <td>No discounting — a real present-value calculation would shrink later gains. No tuition
+              inflation, no graduation risk, no part-time work.</td>
+        </tr>
+        <tr>
+          <td>Marginal thinking</td>
+          <td>MB and MC per unit from linear schedules; total benefit and cost by summation; net benefit at
+              every quantity; the optimum by the MB = MC crossing; the net benefit the overshoot rule gets.</td>
+          <td>Whole hours only, and both schedules are linear. Real MB and MC curve.</td>
+        </tr>
+        <tr>
+          <td>Trade surplus</td>
+          <td>Consumer surplus, producer surplus, total value created, whether a trade occurs, and the
+              bargaining range.</td>
+          <td>One buyer and one seller. A market with many of each is Chapter 4 — that's where these bars
+              become the triangles under supply and demand.</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <div class="card">
+      <div class="label">How the repetition works</div>
+      <p>
+        Checkpoint items are scheduled, not just listed. A question you miss returns at the very next
+        checkpoint; one you get right returns two checkpoints later; get it right twice and it retires to
+        the chapter quiz. That's deliberately plainer than a real spaced-repetition algorithm, because
+        meta-analysis finds expanding and uniform intervals perform about the same (g = 0.034) — the thing
+        that matters is the number of successful retrievals, not the cleverness of the gaps.
+      </p>
+      <p style="margin-bottom:0">
+        Progress lives in this browser only (<code>localStorage</code>), so it survives a reload but does
+        not follow you to another device. Use the export button below to carry it.
+      </p>
+    </div>
+
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>

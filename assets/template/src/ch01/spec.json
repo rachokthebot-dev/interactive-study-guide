@@ -1,0 +1,7 @@
+{
+  "bag-ro-switch": "40%", "bag-ro-bags": "60,000", "bag-ro-rev": "$6,000",
+  "bag-ro-gross": "220.0 kg", "bag-ro-off": "−64.0 kg", "bag-ro-net": "156.0 kg",
+  "oc-ro-ex": "$64,000", "oc-ro-im": "$136,000", "oc-ro-tot": "$200,000", "oc-ro-be": "9.1 yr",
+  "mt-ro-mb": "52", "mt-ro-mc": "44", "mt-ro-opt": "6 hr", "mt-ro-best": "228", "mt-ro-greedy": "24",
+  "tv-ro-cs": "$25", "tv-ro-ps": "$25", "tv-ro-tot": "$50"
+}
