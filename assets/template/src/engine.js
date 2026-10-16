@@ -40,18 +40,26 @@
     return a;
   }
 
-  var items = BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ)
-                  .filter(function (q) { return q.type === 'mcq'; });
-  var slots = items.map(function (_, i) { return i % 4; });
-  shuffle(slots, rng(CHAPTER.id + ':slots'));
+  /* Group by option count first: a three-option item cannot take slot 3,
+   * and folding it back with % would bias position 0. */
+  var groups = {};
+  BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ).forEach(function (q) {
+    if (q.type !== 'mcq') return;
+    (groups[q.opts.length] = groups[q.opts.length] || []).push(q);
+  });
 
-  items.forEach(function (q, k) {
-    var r = rng(q.id), right = null, rest = [];
-    q.opts.forEach(function (o) { if (o.ok && !right) right = o; else rest.push(o); });
-    if (!right) return;                             // malformed item; the verifier reports it
-    shuffle(rest, r);
-    rest.splice(slots[k] % q.opts.length, 0, right);
-    q.opts = rest;
+  Object.keys(groups).forEach(function (key) {
+    var n = +key, group = groups[key];
+    var slots = group.map(function (_, i) { return i % n; });
+    shuffle(slots, rng(CHAPTER.id + ':slots:' + n));
+    group.forEach(function (q, k) {
+      var right = null, rest = [];
+      q.opts.forEach(function (o) { if (o.ok && !right) right = o; else rest.push(o); });
+      if (!right) return;                           // malformed item; the verifier reports it
+      shuffle(rest, rng(q.id));
+      rest.splice(slots[k], 0, right);
+      q.opts = rest;
+    });
   });
 })();
 
