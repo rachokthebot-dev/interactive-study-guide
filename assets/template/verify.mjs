@@ -5,7 +5,8 @@
  *   1. the page runs at all (zero console errors, every applet drew an SVG)
  *   2. the ITEM BANK is well formed (authoring bugs: no correct answer, two
  *      correct answers, a distractor with no explanation, a classify row whose
- *      category isn't in the category list)
+ *      category isn't in the category list), the correct answer is spread
+ *      across the option positions, and a flawless run can reach 100%
  *   3. every control actually moves the model
  *   4. the full answer path works: checkpoints, spaced recall across a reload,
  *      and the quiz grading to a key derived from the page's own data
@@ -70,6 +71,40 @@ const bank = await p.evaluate(() => {
 });
 bank.probs.forEach(x => { fails.push(x); console.log('  FAIL ' + x); });
 ok(bank.probs.length === 0, `item bank well formed (${bank.bank} checkpoint + ${bank.quiz} quiz, ${bank.topics} topics)`);
+
+/* ---- 2b. the correct answer is not always in the same place ---- */
+const pos = await p.evaluate(() => {
+  const h = {}, mcq = BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ)
+    .filter(q => q.type === 'mcq');
+  mcq.forEach(q => { const i = q.opts.findIndex(o => o.ok); h[i] = (h[i] || 0) + 1; });
+  return { h, n: mcq.length };
+});
+if (pos.n >= 8) {
+  const share = Math.max(...Object.values(pos.h)) / pos.n;
+  ok(share <= 0.4, `correct answer spread across positions (worst ${Math.round(share * 100)}%)`,
+     JSON.stringify(pos.h));
+} else {
+  console.log(`  --   only ${pos.n} mcq items, skipping position balance`);
+}
+
+/* ---- 2c. a flawless run really reaches 100% ----
+ * This caught a schedule/metric mismatch: mastery required two successful
+ * recalls, which items homed at the last two checkpoints can never get,
+ * so a perfect run topped out at 69%. Driven through the real Store so
+ * the check cannot drift from the implementation. */
+const ceiling = await p.evaluate(() => {
+  Store.nuke();
+  const N = CHAPTER.anchors.length;
+  for (let t = 1; t <= N; t++)
+    BANK.filter(q => q.home === t).concat(Store.dueAt(t))
+        .forEach(q => Store.record(q.id, true, t));
+  const m = Store.mastery();
+  Store.nuke();
+  return m;
+});
+ok(Math.round(ceiling * 100) === 100, 'a flawless run reaches 100% mastery',
+   Math.round(ceiling * 100) + '%');
+await p.reload({ waitUntil: 'load' });
 
 /* ---- 3. controls move the models ---- */
 const ranges = await p.locator('.applet input[type=range]').all();

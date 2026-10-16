@@ -9,6 +9,52 @@
  * at g = 0.034 — indistinguishable. Successful retrievals are what
  * count, so the schedule just makes sure they happen, spaced.
  * ================================================================= */
+/* ---------- answer-position scrambling ---------------------------
+ * Items are authored with the correct option first — easy to read in the
+ * source, and a free pass if it ships that way: a learner who notices can
+ * score full marks by always picking A.
+ *
+ * Two properties are wanted at once. The correct answer must land in each
+ * position about equally often across the chapter, so no single letter is
+ * worth guessing; and the sequence of positions must not be guessable
+ * either, so a round-robin A, B, C, D is out. So: deal out a balanced
+ * multiset of target slots, shuffle THAT, and give each item the slot it
+ * draws. Everything is seeded off the chapter and item ids, so a learner
+ * sees the same layout on every reload and when an item returns later.
+ * ================================================================= */
+(function scramble() {
+  function rng(seed) {
+    var h = 2166136261, n = 0;                      // FNV-1a over the seed
+    for (var i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return function () {                            // splitmix32: each draw mixed on its own,
+      var z = (h + Math.imul(++n, 0x9E3779B9)) | 0; // so short, similar ids don't correlate
+      z = Math.imul(z ^ (z >>> 16), 0x21F0AAAD);
+      z = Math.imul(z ^ (z >>> 15), 0x735A2D97);
+      return ((z ^ (z >>> 15)) >>> 0) / 4294967296;
+    };
+  }
+  function shuffle(a, r) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(r() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  var items = BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ)
+                  .filter(function (q) { return q.type === 'mcq'; });
+  var slots = items.map(function (_, i) { return i % 4; });
+  shuffle(slots, rng(CHAPTER.id + ':slots'));
+
+  items.forEach(function (q, k) {
+    var r = rng(q.id), right = null, rest = [];
+    q.opts.forEach(function (o) { if (o.ok && !right) right = o; else rest.push(o); });
+    if (!right) return;                             // malformed item; the verifier reports it
+    shuffle(rest, r);
+    rest.splice(slots[k] % q.opts.length, 0, right);
+    q.opts = rest;
+  });
+})();
+
 var Store = (function () {
   var KEY = CHAPTER.key + '.' + CHAPTER.id + '.v1', db;
   try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
@@ -31,11 +77,17 @@ var Store = (function () {
         return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
       });
     },
+    /* Fraction of the bank answered correctly and not outstanding.
+     * This used to need box 3 — two successful recalls — which no item
+     * homed at the last two checkpoints can ever reach, because there is
+     * no later checkpoint to bring it back. A flawless run topped out at
+     * 69%. Box 2 and box 3 both mean "got it right and nothing is owed";
+     * the schedule still uses the distinction, the bar no longer does. */
     mastery: function () {
       var done = 0;
       BANK.forEach(function (q) {
         var it = db.items[q.id];
-        if (it) done += it.box === 3 ? 1 : it.box === 2 ? 0.5 : 0;
+        if (it && it.box >= 2) done += 1;
       });
       return done / BANK.length;
     },
@@ -227,7 +279,8 @@ function mountCheckpoint(ckId, tick) {
     var lab = $('.qlabel', node);
     var tagEl = document.createElement('span');
     tagEl.className = 're';
-    tagEl.textContent = it.box === 3 ? 'retired' : ok ? 'returns later' : 'due again';
+    var canReturn = it.last + 2 <= CHAPTER.anchors.length;
+    tagEl.textContent = !ok ? 'due again' : (it.box === 3 || !canReturn) ? 'retired' : 'returns later';
     lab.appendChild(tagEl);
     lab.addEventListener('click', function () { node.classList.remove('settled'); });
   });
@@ -318,7 +371,7 @@ function railUpdate() {
     var t = CHAPTER.navTicks[a.getAttribute('href')];
     if (!t) return;
     var set = BANK.filter(function (q) { return q.home === t; });
-    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box === 3; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box >= 2; });
     a.classList.toggle('done', !!allDone);
   });
 }

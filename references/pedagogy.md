@@ -28,6 +28,14 @@ box 3  two correct recalls → retires to the quiz only
 Items answered at their home checkpoint are not re-asked there on a reload —
 they appear collapsed for review and return through the due queue instead.
 
+The rail counts an item as done once it has been answered **correctly** — box 2
+or box 3 — not once it reaches box 3. Requiring box 3 looks tidier and is a
+trap: an item homed at one of the last two checkpoints has no later checkpoint
+to return at, so it can never earn a second recall, and a learner who answered
+everything correctly sees something like 69%. The schedule still uses the
+distinction; the progress bar must not. `verify.mjs` simulates a flawless run
+and fails if it does not reach 100%.
+
 This is not FSRS and should not be. FSRS earns its keep scheduling across days;
 this runs inside one reading session, where the job is just to guarantee
 spaced repeats happen at all. If a learner wants cross-day scheduling, the

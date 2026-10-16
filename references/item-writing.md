@@ -62,6 +62,13 @@ reasoning went wrong. The correct option needs no `why` unless it adds something
   why: 'The giveaway in each case…' }
 ```
 
+**Always author the correct option first.** The engine permutes the options at
+load time — balanced across the positions and seeded by the item id, so the
+spread is even over the chapter and stable for the learner — so the source stays
+readable and nothing ships where "always pick A" scores full marks. Two
+consequences: never write an option that depends on its position ("both of the
+above", "A and C"), and never try to vary the position yourself.
+
 - `short` is the collapsed label after a correct answer — six words, no more.
 - `topic` indexes the chapter's `TOPICS` array, and drives the quiz breakdown.
   **Every topic in `TOPICS` must appear in the quiz** or the verifier fails.
