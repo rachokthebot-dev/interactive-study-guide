@@ -155,8 +155,10 @@ node verify.mjs http://localhost:8000/chNN-slug.html src/chNN/spec.json
 (no correct answer, two correct answers, a distractor with no explanation, a
 classify row outside its category list), drives every slider to confirm it moves
 its model, answers a checkpoint and reloads to confirm the spaced-recall queue
-really brings items back, and grades the quiz against a key read from the page's
-own data.
+really brings items back, grades the quiz against a key read from the page's
+own data, and loads the chapter and the hub at 375px to fail on any sideways
+scroll. Most learners open these on a phone; keep wide tables inside
+`.tbl-wrap` and anything full-bleed inside `.wrap`.
 
 `spec.json` is the part that catches *you*: pin readouts to values you worked
 out by hand. It has already caught a model bug and an arithmetic slip in a

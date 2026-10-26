@@ -193,6 +193,17 @@ await p.locator('#btn-export').click();
 await p.waitForTimeout(250);
 ok((await p.locator('#export-note').textContent()).length > 0, 'export button reports a result');
 
+/* ---- phone width: nothing may be wider than the screen ---- */
+for (const [label, u] of [['chapter', url], ['hub', new URL('index.html', url).href]]) {
+  const m = await b.newPage({ viewport: { width: 375, height: 800 }, isMobile: true });
+  const r = await m.goto(u).catch(() => null);
+  if (r && r.ok() !== false) {
+    const w = await m.evaluate(() => document.documentElement.scrollWidth);
+    ok(w <= 375, `${label} fits a 375px phone without sideways scroll`, w + 'px');
+  }
+  await m.close();
+}
+
 await b.close();
 console.log('\n' + (errs.length ? 'CONSOLE ERRORS:\n' + errs.join('\n') : 'no console errors'));
 console.log(fails.length ? `${fails.length} FAILURE(S)` : 'all checks passed');

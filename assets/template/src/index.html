@@ -24,10 +24,11 @@ h1 em{font-style:italic;color:var(--clay)}
 .ch.live:hover{border-color:var(--slate);transform:translateY(-2px);box-shadow:0 10px 26px rgba(20,20,19,.07)}
 .ch.soon{opacity:.56;cursor:default;border-style:dashed}
 .ch .n{font-family:var(--mono);font-size:13px;color:var(--clay);font-weight:600}
-.ch .t{font-family:var(--serif);font-size:19px;font-weight:500}
-.ch .s{font-size:13.5px;color:var(--g500);margin-top:3px}
+.ch .t{display:block;font-family:var(--serif);font-size:19px;font-weight:500}
+.ch .s{display:block;font-size:13.5px;color:var(--g500);margin-top:3px}
 .ch .k{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--g500);background:var(--g100);padding:4px 10px;border-radius:999px;white-space:nowrap}
 .ch.live .k{color:var(--clay-d);background:#FCEEE3}
+@media (max-width:640px){.wrap{padding:0 18px 80px}header{padding:48px 0 32px}.ch{grid-template-columns:28px 1fr;gap:4px 12px;align-items:start;padding:16px 18px}.ch .n{padding-top:4px}.ch .k{grid-column:2;justify-self:start;margin-top:8px;white-space:normal;line-height:1.6}.card{padding:18px 18px}}
 .card{background:var(--paper);border:1.5px solid var(--g300);border-radius:14px;padding:22px 26px;margin-top:40px}
 .card .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--clay);margin-bottom:9px}
 .card p{margin:0 0 12px;font-size:14.5px;color:var(--g700)}.card p:last-child{margin:0}

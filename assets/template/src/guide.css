@@ -257,7 +257,8 @@ table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-fam
 .ck-score b { color: var(--slate); }
 
 /* ── progress rail ────────────────────── */
-.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); padding: 11px 32px; }
+@media (max-width: 640px) { .wrap { padding-left: 18px; padding-right: 18px; } .rail { padding: 10px 18px; } table.tbl { font-size: 12.5px; } table.tbl th, table.tbl td { padding: 9px 8px; } }
 .rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
 .rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
 .rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
